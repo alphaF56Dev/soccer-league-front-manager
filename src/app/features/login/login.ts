@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { UserAccess } from '../../shared/models/user_access.model';
 import { LoginService } from '../../core/services/login.service';
 import { CommonModule } from '@angular/common';
+import { response } from 'express';
 
 
 @Component({
@@ -26,6 +27,10 @@ export class Login {
     console.log("access obj: ", this.user)
     this.loginSrv.auth(this.user).subscribe(res => {
       console.log('Loggin success!!!');
+      const token = res.token;
+      sessionStorage.setItem('jwt', token);
+      console.log("token gotten: ", token);
+      
     }, error => {
       console.log(error);
     });
