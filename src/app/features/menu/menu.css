@@ -1,0 +1,8 @@
+/* Animación simple para botones */
+button {
+  transition: transform 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+}

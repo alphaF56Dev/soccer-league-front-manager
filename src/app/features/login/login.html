@@ -71,6 +71,10 @@
         Iniciar Sesión
       </button>
     </form>
+    <div *ngIf="errorMsg" class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+      {{ errorMsg }}
+    </div>
+
 
     <p class="mt-6 text-center text-sm text-gray-500">
       © 2026 Soccer League Management

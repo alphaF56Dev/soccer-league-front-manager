@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserAccess } from '../../shared/models/user_access.model';
 import { LoginService } from '../../core/services/login.service';
 import { CommonModule } from '@angular/common';
 import { response } from 'express';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,22 +18,23 @@ import { response } from 'express';
 })
 export class Login {
   constructor(private loginSrv:LoginService){}
+  private router = inject(Router);
 
   public user:UserAccess = {
     username:'',
     pw: ''
   };
 
+  public errorMsg = '';
+
   login(){
     console.log("access obj: ", this.user)
     this.loginSrv.auth(this.user).subscribe(res => {
-      console.log('Loggin success!!!');
       const token = res.token;
       sessionStorage.setItem('jwt', token);
-      console.log("token gotten: ", token);
-      
+      this.router.navigate(['/menu']);
     }, error => {
-      console.log(error);
+      this.errorMsg = 'X Invalid credentials.';
     });
       
   }
