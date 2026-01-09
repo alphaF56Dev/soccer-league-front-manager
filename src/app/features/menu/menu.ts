@@ -10,6 +10,11 @@ import { Router } from '@angular/router';
 })
 export class Menu {
   private router = inject(Router);
+  logout(){
+    sessionStorage.clear();
+    this.router.navigate(['/login']);  
+  }
+
   goToCountries(){
     this.router.navigate(['/countries']);
   }
