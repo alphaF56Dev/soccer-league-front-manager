@@ -2,9 +2,10 @@
   <div class="w-full max-w-4xl bg-white rounded-lg shadow-lg p-8">
     <!-- Encabezado -->
     <div class="flex flex-col items-center mb-6">
+      <app-menu-button></app-menu-button>
       <img src="assets/soccer-ball.png" alt="Soccer Logo" class="w-16 h-16 mb-2" />
-      <h1 class="text-2xl font-bold text-gray-800">Catálogo de Países</h1>
-      <p class="text-gray-500 text-sm">Lista de países registrados</p>
+      <h1 class="text-2xl font-bold text-gray-800">Countries</h1>
+      <p class="text-gray-500 text-sm">List of countries</p>
       <button 
         (click)="addCountry()" 
         class="mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400">
@@ -18,25 +19,25 @@
 
         <thead class="bg-green-700 text-white">
           <tr>
-            <th class="px-4 py-2 text-left">ID</th>
-            <th class="px-4 py-2 text-left">Nombre</th>
-            <th class="px-4 py-2 text-left">ISO</th>
-            <th class="px-4 py-2 text-center">Acciones</th>
+            <!-- <th class="px-4 py-2 text-left">ID</th>-->
+            <th class="px-4 py-2 text-left">Name</th>
+            <th class="px-4 py-2 text-left">ISO Code</th>
+            <th class="px-4 py-2 text-center">Options</th>
           </tr>
         </thead>
         <tbody>
           <!--<pre>{{ countries | json }}</pre>-->
 
           <tr *ngFor="let country of countries$ | async" class="border-b hover:bg-green-50">
-            <td class="px-4 py-2">{{ country.id_country }}</td>
+            <!-- <td class="px-4 py-2">{{ country.id_country }}</td>-->
             <td class="px-4 py-2">{{ country.name }}</td>
             <td class="px-4 py-2">{{ country.iso }}</td>
             <td class="px-4 py-2 text-center">
               <button class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400">
-                Editar
+                Edit
               </button>
               <button class="ml-2 px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:ring-2 focus:ring-red-400">
-                Eliminar
+                Delete
               </button>
             </td>
           </tr>

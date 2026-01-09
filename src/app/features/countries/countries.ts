@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { MenuButton } from "../common-components/menu-button/menu-button";
 
 @Component({
   selector: 'app-countries',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MenuButton],
   standalone: true, 
   templateUrl: './countries.html',
   styleUrl: './countries.css'
