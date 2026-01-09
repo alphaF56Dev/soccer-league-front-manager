@@ -1,0 +1,8 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  transition: background-color 0.2s ease-in-out;
+}
