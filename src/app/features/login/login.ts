@@ -28,7 +28,6 @@ export class Login {
   public errorMsg = '';
 
   login(){
-    console.log("access obj: ", this.user)
     this.loginSrv.auth(this.user).subscribe(res => {
       const token = res.token;
       sessionStorage.setItem('jwt', token);

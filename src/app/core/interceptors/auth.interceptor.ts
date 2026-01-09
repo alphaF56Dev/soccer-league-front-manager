@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from "@angular/common/http";
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
     const token = sessionStorage.getItem("jwt");
-    if(token){
+    if(token && !req.url.includes('/users/auth')){
         const cloned = req.clone({
             setHeaders: {
                 Authorization: `Bearer ${token}`

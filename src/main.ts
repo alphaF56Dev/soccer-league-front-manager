@@ -11,7 +11,8 @@ bootstrapApplication(App, {
     provideRouter(routes),
     provideHttpClient(
       withInterceptors([AuthInterceptor])
-    )
+    ),
+    provideHttpClient()
   ]
 } )
   .catch((err) => console.error(err));

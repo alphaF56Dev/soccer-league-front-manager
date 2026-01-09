@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-menu',
@@ -7,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './menu.css',
 })
 export class Menu {
-
+  private router = inject(Router);
+  goToCountries(){
+    this.router.navigate(['/countries']);
+  }
 }
