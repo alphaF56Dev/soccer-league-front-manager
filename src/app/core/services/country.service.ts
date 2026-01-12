@@ -12,4 +12,8 @@ export class CountryService{
     listCountries(): Observable<Country[]>{
         return this.http.get<Country[]>(`${this.apiUrl}countries/list-countries`);
     }
+
+    saveCountry(country: Country):  Observable<any>{
+        return this.http.post(`${this.apiUrl}countries/save-country`, country);
+    }
 }

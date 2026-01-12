@@ -1,0 +1,51 @@
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-700 to-green-900">
+  <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+    <!-- Encabezado -->
+    <div class="flex flex-col items-center mb-6">
+      <img src="assets/flag-icon.png" alt="Country Icon" class="w-16 h-16 mb-2" />
+      <h1 class="text-2xl font-bold text-gray-800">Add country</h1>
+      <p class="text-gray-500 text-sm">Add new country to the system</p>
+    </div>
+
+    <!-- Formulario -->
+    <form (ngSubmit)="saveCountry()" #countryForm="ngForm" class="space-y-4">
+      <!-- Nombre -->
+      <div>
+        <label class="block text-gray-700">Name</label>
+        <input
+          type="text"
+          [(ngModel)]="country.name"
+          name="name"
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <!-- ISO -->
+      <div>
+        <label class="block text-gray-700">ISO code</label>
+        <input
+          type="text"
+          [(ngModel)]="country.iso"
+          name="iso"
+          maxlength="3"
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <!-- Botón Guardar -->
+      <button
+        type="submit"
+        [disabled]="!countryForm.form.valid"
+        class="w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400"
+      >
+        + Add country
+      </button>
+    </form>
+
+    <!-- Mensajes -->
+    <p *ngIf="successMsg" class="mt-4 text-green-600 text-center">{{ successMsg }}</p>
+    <p *ngIf="errorMsg" class="mt-4 text-red-600 text-center">{{ errorMsg }}</p>
+  </div>
+</div>
