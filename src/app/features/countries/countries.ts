@@ -36,4 +36,8 @@ export class Countries {
     this.router.navigate(['/country-form']);   
   }
 
+  modifyCountry(id_country: number){
+    this.router.navigate(['/edit-country/', id_country]);
+  }
+
 }

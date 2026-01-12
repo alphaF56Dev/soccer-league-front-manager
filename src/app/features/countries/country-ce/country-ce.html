@@ -3,8 +3,12 @@
     <!-- Encabezado -->
     <div class="flex flex-col items-center mb-6">
       <img src="assets/flag-icon.png" alt="Country Icon" class="w-16 h-16 mb-2" />
-      <h1 class="text-2xl font-bold text-gray-800">Add country</h1>
-      <p class="text-gray-500 text-sm">Add new country to the system</p>
+      <h1 class="text-2xl font-bold text-gray-800">
+        {{isEdit ? 'Edit Country' : 'Add country' }}
+      </h1>
+      <p class="text-gray-500 text-sm">
+        {{isEdit ? 'Modify country information' : 'Add new country to the system'}}
+      </p>
     </div>
 
     <!-- Formulario -->
@@ -13,6 +17,7 @@
       <div>
         <label class="block text-gray-700">Name</label>
         <input
+          #countryName
           type="text"
           [(ngModel)]="country.name"
           name="name"
@@ -25,6 +30,7 @@
       <div>
         <label class="block text-gray-700">ISO code</label>
         <input
+          #countryIso
           type="text"
           [(ngModel)]="country.iso"
           name="iso"
@@ -40,7 +46,7 @@
         [disabled]="!countryForm.form.valid"
         class="w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400"
       >
-        + Add country
+        Save country
       </button>
     </form>
 

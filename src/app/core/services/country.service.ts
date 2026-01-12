@@ -16,4 +16,8 @@ export class CountryService{
     saveCountry(country: Country):  Observable<any>{
         return this.http.post(`${this.apiUrl}countries/save-country`, country);
     }
+
+    getCountry(id_country:Number): Observable<Country>{
+        return this.http.get<Country>(`${this.apiUrl}countries/get-country-byId/${id_country}`);
+    }
 }

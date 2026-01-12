@@ -10,5 +10,6 @@ export const routes: Routes = [
     {path: 'login', component: Login},
     {path: 'menu', component: Menu, canActivate: [authGuard]},
     {path: 'countries', component: Countries, canActivate: [authGuard]},
-    {path: 'country-form', component: CountryCe, canActivate: [authGuard]}
+    {path: 'country-form', component: CountryCe, canActivate: [authGuard]},
+    {path: 'edit-country/:id_country', component: CountryCe, canActivate: [authGuard]}
 ];

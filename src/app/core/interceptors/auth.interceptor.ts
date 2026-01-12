@@ -13,7 +13,7 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
 
     return next(authReq).pipe(
         catchError(error => {
-            //route to login if the backend give us 403 or 401
+            //route to login if the backend give us 403 or 401            
             if(error.status === 401 || error.status === 403 ){
                 sessionStorage.removeItem('jwt');
                 router.navigate(['/login']);
