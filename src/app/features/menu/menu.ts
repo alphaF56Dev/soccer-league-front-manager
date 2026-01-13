@@ -18,4 +18,8 @@ export class Menu {
   goToCountries(){
     this.router.navigate(['/countries']);
   }
+
+  goToStates(){
+    this.router.navigate(['/states']);
+  }
 }
