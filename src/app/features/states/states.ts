@@ -30,7 +30,10 @@ export class States implements OnInit{
   }
 
   modifyState(stateId?: number){
-    console.log("modifying State.....");
-    
+    this.router.navigate(['/edit-state/' + stateId])   
+  }
+
+  addState(){
+    this.router.navigate(['/state-form']);
   }
 }

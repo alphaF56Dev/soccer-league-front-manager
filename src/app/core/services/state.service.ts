@@ -12,4 +12,12 @@ export class StateService {
     listStates(): Observable<State[]>{        
         return this.http.get<State[]>(`${this.apiUrl}list-states`);
     }
+
+    saveState(state: State): Observable<any>{
+        return this.http.post(`${this.apiUrl}save-state`, state);
+    }
+
+    getStateById(state_id: Number): Observable<State>{
+        return this.http.get<State>(`${this.apiUrl}get-state-byId/${state_id}`);
+    }
 }

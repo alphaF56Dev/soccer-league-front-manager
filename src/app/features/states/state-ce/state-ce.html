@@ -1,0 +1,83 @@
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-700 to-green-900">
+  <div class="w-full max-w-md rounded-lg shadow-lg p-8 bg-white/80 backdrop-blur-sm">
+    <!-- Encabezado -->
+    <div class="flex flex-col items-center mb-6">
+      <img src="assets/state-icon.png" alt="State Icon" class="w-16 h-16 mb-2" />
+      <h1 class="text-2xl font-bold text-gray-800">
+        {{ isEdit ? 'Edit State' : 'Add State' }}
+      </h1>
+      <!--<p class="text-gray-600 text-sm">
+        {{ isEdit ? 'Modify State' : 'Add State' }}
+      </p>-->
+    </div>
+
+    <!-- Formulario -->
+    <form #stateForm="ngForm" (ngSubmit)="saveOrUpdateState()" class="space-y-4">
+      <!-- Country -->
+      <div>
+        <label class="block text-gray-700">Country</label>
+        <select
+          [(ngModel)]="state.idCountry"
+          name="idCountry"
+          [compareWith]="compareCountry"
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        >
+          <option *ngFor="let country of countries$ | async" [ngValue]="country">
+            {{ country.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Nombre -->
+      <div>
+        <label class="block text-gray-700">State Name</label>
+        <input
+          type="text"
+          [(ngModel)]="state.name"
+          name="name"
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <!-- Código -->
+      <div>
+        <label class="block text-gray-700">ISO Code</label>
+        <input
+          type="text"
+          [(ngModel)]="state.code"
+          name="code"
+          required
+          maxlength="10"
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <!-- Abreviatura -->
+      <div>
+        <label class="block text-gray-700">Short name</label>
+        <input
+          type="text"
+          [(ngModel)]="state.shortName"
+          name="shortName"          
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <!-- Botón Guardar -->
+      <button
+        type="submit"
+        [disabled]="!stateForm.form.valid"
+        class="w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400"
+      >
+        {{ isEdit ? 'Update State' : 'Add State' }}
+      </button>
+    </form>
+
+    <!-- Mensajes -->
+    <p *ngIf="successMsg" class="mt-4 text-green-600 text-center">{{ successMsg }}</p>
+    <p *ngIf="errorMsg" class="mt-4 text-red-600 text-center">{{ errorMsg }}</p>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { Countries } from './features/countries/countries';
 import { authGuard } from './core/guards/auth.guard';
 import { CountryCe } from './features/countries/country-ce/country-ce';
 import { States } from './features/states/states';
+import { StateCe } from './features/states/state-ce/state-ce';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch:'full'},
@@ -13,5 +14,7 @@ export const routes: Routes = [
     {path: 'countries', component: Countries, canActivate: [authGuard]},
     {path: 'country-form', component: CountryCe, canActivate: [authGuard]},
     {path: 'edit-country/:id_country', component: CountryCe, canActivate: [authGuard]},
-    {path: 'states', component: States, canActivate: [authGuard]}
+    {path: 'states', component: States, canActivate: [authGuard]},
+    {path: 'state-form', component: StateCe, canActivate: [authGuard]},
+    {path: 'edit-state/:id_state', component: StateCe, canActivate: [authGuard]}
 ];
