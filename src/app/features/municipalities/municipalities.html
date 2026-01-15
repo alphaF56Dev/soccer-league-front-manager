@@ -1,0 +1,51 @@
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-700 to-green-900">
+  <div class="w-full max-w-6xl rounded-lg shadow-lg p-6 bg-white/80 backdrop-blur-sm">
+    <!-- Encabezado -->
+    <div class="flex flex-col items-center mb-6">
+      <app-menu-button></app-menu-button>
+      <img src="assets/municipality-icon.png" alt="Municipality Icon" class="w-16 h-16 mb-2" />
+      <h1 class="text-2xl font-bold text-gray-800">List of Municipalities</h1>
+    </div>
+
+    <!-- Tabla scrollable con filtros -->
+    <div class="overflow-y-auto max-h-[600px] rounded-md border border-gray-200 shadow-inner">
+      <table class="w-full border-collapse">
+        <thead class="bg-green-700 text-white sticky top-0">
+          <tr>
+            <th class="px-4 py-2 text-left">
+              State
+              <input type="text" (input)="filters.state.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-left">
+              Name
+              <input type="text" (input)="filters.name.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-left">
+              Short Name
+              <input type="text" (input)="filters.shortName.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-center">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let municipality of filteredMunicipalities$ | async" class="border-b hover:bg-green-50">
+            <td class="px-4 py-2">
+              {{ municipality.idState.idCountry.iso }}-{{ municipality.idState.shortName }}
+            </td>
+            <td class="px-4 py-2">{{ municipality.name }}</td>
+            <td class="px-4 py-2">{{ municipality.shortName }}</td>
+            <td class="px-4 py-2 text-center">
+              <button (click)="modifyMunicipality(municipality.idMunicipality)" class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400">
+                ✏️ Edit
+              </button>
+              <!--<button (click)="deleteMunicipality(municipality.idMunicipality)" class="ml-2 px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:ring-2 focus:ring-red-400">
+                🗑️ Delete
+              </button> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

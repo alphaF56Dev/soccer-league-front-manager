@@ -22,4 +22,8 @@ export class Menu {
   goToStates(){
     this.router.navigate(['/states']);
   }
+
+  goToMunicipalities(){
+    this.router.navigate(['/municipalities']);
+  }
 }
