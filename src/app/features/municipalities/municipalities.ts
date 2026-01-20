@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { Municipality } from '../../shared/models/municipality.model';
 import { MunicipalityService } from '../../core/services/municipality.service';
 import { MenuButton } from "../common-components/menu-button/menu-button";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-municipalities',
@@ -13,7 +14,7 @@ import { MenuButton } from "../common-components/menu-button/menu-button";
   styleUrl: './municipalities.css',
 })
 export class Municipalities implements OnInit{
-
+  router = inject(Router);
   constructor(private municSrv: MunicipalityService){}
 
   filters = {
@@ -35,8 +36,7 @@ export class Municipalities implements OnInit{
   }
 
   modifyMunicipality(idMunicipality?: Number){
-    console.log("editing municipality....");
-    
+    this.router.navigate(['/edit-municipality/' + idMunicipality]);
   }
 
   getMunicipalities(){
@@ -60,7 +60,10 @@ export class Municipalities implements OnInit{
       )
     )
   );
-
 }
+
+  addMunicipality(){
+    this.router.navigate(['/municipality-form']);
+  }
 
 }

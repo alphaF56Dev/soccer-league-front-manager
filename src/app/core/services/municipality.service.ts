@@ -13,4 +13,11 @@ export class MunicipalityService {
         return this.http.get<Municipality[]>(`${this.apiUrl}list-municipalities`);
     }
 
+    saveMunicipality(municipality: Municipality){
+        return this.http.post(`${this.apiUrl}save-municipality`, municipality);
+    }
+
+    getMunicipalityById(id_municipality: number) : Observable<Municipality>{
+        return this.http.get<Municipality>(`${this.apiUrl}getMunicipalityById/${id_municipality}`);
+    }
 }

@@ -61,7 +61,7 @@ export class StateCe implements OnInit{
         this.state = {... res };
         this.cd.detectChanges();
       }, error: () =>{
-        this.errorMsg = "Ups! something was wrong getting country information, please contact your support!!";
+        this.errorMsg = "Ups! something was wrong getting state information, please contact your support!!";
       }
     })
   }
