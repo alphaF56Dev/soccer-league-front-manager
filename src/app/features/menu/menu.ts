@@ -15,6 +15,10 @@ export class Menu {
     this.router.navigate(['/login']);  
   }
 
+  goToUsers(){
+    alert('Not available now!!!');
+  }
+
   goToCountries(){
     this.router.navigate(['/countries']);
   }
