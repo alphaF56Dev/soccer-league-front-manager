@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MenuButton } from "../common-components/menu-button/menu-button";
 import { MemberTypeService } from '../../core/services/membertype.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { MemberType } from '../../shared/models/membertype.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-members-type',
@@ -16,6 +17,8 @@ export class MembersType implements OnInit{
 
   constructor(private mtSrv : MemberTypeService){}
 
+  router = inject(Router);
+
   membersType$ !: Observable<MemberType[]>;
 
   ngOnInit() {
@@ -23,11 +26,11 @@ export class MembersType implements OnInit{
   }
 
   addMemberType(){
-    console.log('Adding member type ...');    
+    this.router.navigate(['/member-type-form']);
   }
 
-  modifyMemberType(idMemberType: number){
-    console.log('Modifying member type ...');    
+  modifyMemberType(idMemberType?: Number){
+    this.router.navigate(['/edit-member-type/'+idMemberType]);
   }
 
   getMembersType(){

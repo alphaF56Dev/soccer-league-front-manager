@@ -1,5 +1,5 @@
 export interface MemberType{
-    idMember: Number,
+    idMember?: Number,
     name: String,
     isActive: Boolean,
     code: String

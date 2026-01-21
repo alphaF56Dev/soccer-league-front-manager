@@ -12,4 +12,12 @@ export class MemberTypeService{
     listMembersType(): Observable<MemberType[]>{
         return this.http.get<MemberType[]>(`${this.apiUrl}list-membertypes`);
     }
+
+    saveMemberType(memberType: MemberType): Observable<any>{
+        return this.http.post(`${this.apiUrl}save-membertype`, memberType);
+    }
+
+    getMemberTypeById(idMemberType: Number): Observable<MemberType>{
+        return this.http.get<MemberType>(`${this.apiUrl}get-membertype-by-id/${idMemberType}`);
+    }
 }

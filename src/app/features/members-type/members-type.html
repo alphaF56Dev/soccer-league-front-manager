@@ -3,8 +3,8 @@
     <!-- Encabezado -->
     <div class="flex flex-col items-center mb-6">
       <app-menu-button></app-menu-button>
-      <img src="assets/state-icon.png" alt="State Icon" class="w-16 h-16 mb-2" />
-      <h1 class="text-2xl font-bold text-gray-800">States</h1>
+      <img src="assets/state-icon.png" alt="Member Type Icon" class="w-16 h-16 mb-2" />
+      <h1 class="text-2xl font-bold text-gray-800">Member Types</h1>
       <!--<p class="text-gray-600 text-sm">Consulta y administra los estados registrados</p>-->
       <button 
         (click)="addMemberType()" 
@@ -31,7 +31,7 @@
             <td class="px-4 py-2">{{ memberType.code }}</td>
             <td class="px-4 py-2 text-center">
               <button
-                (click)="modifyMemberType(+memberType.idMember)"
+                (click)="modifyMemberType(memberType.idMember)"
                 class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400"
               >
                 ✏️ Edit
