@@ -34,4 +34,8 @@ export class Menu {
   goToMembersType(){
     this.router.navigate(['/members-type']);
   }
+
+  goToMembers(){
+    this.router.navigate(['/members']);
+  }
 }

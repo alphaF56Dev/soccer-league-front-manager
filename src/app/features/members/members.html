@@ -1,0 +1,65 @@
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-700 to-green-900">
+  <div class="w-full max-w-5xl rounded-lg shadow-lg p-6 bg-white/80 backdrop-blur-sm">
+    <!-- Encabezado -->
+    <div class="flex flex-col items-center mb-6">
+      <app-menu-button></app-menu-button>
+      <img src="assets/state-icon.png" alt="Member Icon" class="w-16 h-16 mb-2" />
+      <h1 class="text-2xl font-bold text-gray-800">Members</h1>
+      <!--<p class="text-gray-600 text-sm">Consulta y administra los estados registrados</p>-->
+      <button 
+        (click)="addMember()" 
+        class="mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400">
+          + Add
+      </button>
+    </div>
+
+    
+    <div class="overflow-y-auto max-h-[600px] rounded-md border border-gray-200 shadow-inner">
+      <table class="w-full border-collapse">
+        <thead class="bg-green-700 text-white sticky top-0">
+          <tr>
+            <th class="px-4 py-2 text-left">
+              Name
+              <input type="text" (input)="filters.name.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-left">
+              Email
+              <input type="text" (input)="filters.email.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-left">
+              Member Type
+              <input type="text" (input)="filters.memberType.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-left">
+              Sex
+              <input type="text" (input)="filters.sex.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let member of filteredmembers$ | async" class="border-b hover:bg-green-50">
+            <td class="px-4 py-2">{{ member.name }}</td>
+            <td class="px-4 py-2">{{ member.email }}</td>
+            <td class="px-4 py-2">{{ member.memberType.name }}</td>
+            <td class="px-4 py-2">{{ member.sex }}</td>
+            <td class="px-4 py-2 text-center">
+              <button
+                (click)="modifyMember(member.idMember)"
+                class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400"
+              >
+                ✏️ Edit
+              </button>
+              <!--<button
+                (click)="deleteState(state.id_state)"
+                class="ml-2 px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:ring-2 focus:ring-red-400"
+              >
+                🗑️ Delete
+              </button>-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
