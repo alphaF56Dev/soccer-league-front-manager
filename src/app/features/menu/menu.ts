@@ -30,4 +30,8 @@ export class Menu {
   goToMunicipalities(){
     this.router.navigate(['/municipalities']);
   }
+
+  goToMembersType(){
+    this.router.navigate(['/members-type']);
+  }
 }

@@ -8,6 +8,7 @@ import { States } from './features/states/states';
 import { StateCe } from './features/states/state-ce/state-ce';
 import { Municipalities } from './features/municipalities/municipalities';
 import { MunicipalityCe } from './features/municipalities/municipality-ce/municipality-ce';
+import { MembersType } from './features/members-type/members-type';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch:'full'},
@@ -21,5 +22,6 @@ export const routes: Routes = [
     {path: 'edit-state/:id_state', component: StateCe, canActivate: [authGuard]},
     {path: 'municipalities', component: Municipalities, canActivate: [authGuard]},
     {path: 'municipality-form', component: MunicipalityCe, canActivate: [authGuard]},
-    {path: 'edit-municipality/:id_municipality', component: MunicipalityCe, canActivate: [authGuard]}
+    {path: 'edit-municipality/:id_municipality', component: MunicipalityCe, canActivate: [authGuard]},
+    {path: 'members-type', component: MembersType, canActivate: [authGuard]}
 ];
