@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MenuButton } from "../common-components/menu-button/menu-button";
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MemberService } from '../../core/services/member.service';
 import { Member } from '../../shared/models/member.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-members',
@@ -15,6 +16,8 @@ import { Member } from '../../shared/models/member.model';
 export class Members implements OnInit{
 
   constructor(private memberSrv: MemberService){}
+
+  router = inject(Router);
 
   members$ !: Observable<Member[]>;
   filteredmembers$!: Observable<Member[]>;
@@ -56,11 +59,10 @@ export class Members implements OnInit{
 
 
   addMember(){
-    console.log('Adding new member!');
+    this.router.navigate(['/member-form']);
   }
 
   modifyMember(idMember?: Number){
-    console.log('Modifying member');
-    
+    this.router.navigate(['/edit-member/' + idMember]);    
   }
 }

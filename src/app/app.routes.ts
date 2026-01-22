@@ -11,6 +11,7 @@ import { MunicipalityCe } from './features/municipalities/municipality-ce/munici
 import { MembersType } from './features/members-type/members-type';
 import { MemberTypeCe } from './features/members-type/member-type-ce/member-type-ce';
 import { Members } from './features/members/members';
+import { MemberCe } from './features/members/member-ce/member-ce';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch:'full'},
@@ -28,5 +29,7 @@ export const routes: Routes = [
     {path: 'members-type', component: MembersType, canActivate: [authGuard]},
     {path: 'member-type-form', component: MemberTypeCe, canActivate: [authGuard]},
     {path: 'edit-member-type/:idMemberType', component: MemberTypeCe, canActivate: [authGuard]},
-    {path: 'members', component: Members, canActivate: [authGuard]}
+    {path: 'members', component: Members, canActivate: [authGuard]},
+    {path: 'member-form', component: MemberCe, canActivate: [authGuard]},
+    {path: 'edit-member/:idMember', component: MemberCe, canActivate:[authGuard]}
 ];

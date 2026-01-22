@@ -12,4 +12,12 @@ export class MemberService{
     listMembers(): Observable<Member[]>{
         return this.http.get<Member[]>(`${this.urlApi}list-members`);
     }
+
+    saveMember(member: Member) : Observable<any>{
+        return this.http.post(`${this.urlApi}save-member`, member);
+    }
+
+    getMemberById(idMember: Number): Observable<any>{
+        return this.http.get<any>(`${this.urlApi}get-member-by-id/${idMember}`);
+    }
 }

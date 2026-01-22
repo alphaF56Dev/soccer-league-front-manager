@@ -5,7 +5,7 @@ export interface Member{
     memberType: MemberType,
     name: String,
     personalId: String,
-    birthday: Date, 
+    birthday: String, 
     phone: String,
     sex: String,
     email: String,
