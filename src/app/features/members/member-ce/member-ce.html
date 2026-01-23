@@ -93,8 +93,8 @@
     <!-- Tabs de información adicional -->
     <div class="mt-8">
       <mat-tab-group>
-        <mat-tab label="Direcciones" *ngIf="isEdit">
-          <p class="text-gray-600 text-sm">Directions. Building</p>
+        <mat-tab label="Addresses" *ngIf="isEdit">
+          <app-addresses idMember="{{idMember}}"></app-addresses>
         </mat-tab>
         <mat-tab label="Referee" *ngIf="member.memberType.code === 'RE'">
           <p class="text-gray-600 text-sm">Referre informations. Building</p>

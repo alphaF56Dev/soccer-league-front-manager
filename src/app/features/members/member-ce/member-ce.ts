@@ -9,12 +9,13 @@ import { MemberService } from '../../../core/services/member.service';
 import { MemberTypeService } from '../../../core/services/membertype.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavButton } from "../../common-components/nav-button/nav-button";
+import { Addresses } from "../../addresses/addresses";
 
 @Component({
   selector: 'app-member-ce',
   imports: [CommonModule,
     FormsModule,
-    MatTabsModule, NavButton],
+    MatTabsModule, NavButton, Addresses],
   templateUrl: './member-ce.html',
   styleUrl: './member-ce.css',
 })
@@ -29,6 +30,7 @@ export class MemberCe implements OnInit{
 
   router = inject(Router);
   route = inject(ActivatedRoute);
+  idMember !: Number;
 
   member: Member = {
     memberType: {} as MemberType,
@@ -56,6 +58,7 @@ export class MemberCe implements OnInit{
   ngAfterViewInit(){
     const id = this.route.snapshot.paramMap.get('idMember');
     if (id) {
+      this.idMember = +id;
       this.isEdit = true;
       this.getMember(+id);
     }

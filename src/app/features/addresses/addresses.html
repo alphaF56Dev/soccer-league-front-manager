@@ -1,0 +1,39 @@
+<!-- Tabla scrollable -->
+    <button 
+        (click)="addAddress()" 
+        class="mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400">
+          + Add
+      </button>
+    <div class="overflow-y-auto max-h-[600px] rounded-md border border-gray-200 shadow-inner">
+      <table class="w-full border-collapse">
+        <thead class="bg-green-700 text-white sticky top-0">
+          <tr>
+            <th class="px-4 py-2 text-left">Name</th>
+            <th class="px-4 py-2 text-left">Suburb</th>
+            <th class="px-4 py-2 text-left">Location</th>
+            <th class="px-4 py-2 text-center">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let address of addresses$ | async" class="border-b hover:bg-green-50">
+            <td class="px-4 py-2">{{ address.addressName }}</td>
+            <td class="px-4 py-2">{{ address.suburb }}</td>
+            <td class="px-4 py-2">{{ address.location }}</td>
+            <td class="px-4 py-2 text-center">
+              <button
+                (click)="modifyAddress(address.idAddress)"
+                class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400"
+              >
+                ✏️ Edit
+              </button>
+              <!--<button
+                (click)="deleteState(state.id_state)"
+                class="ml-2 px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:ring-2 focus:ring-red-400"
+              >
+                🗑️ Delete
+              </button>-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
