@@ -1,0 +1,5 @@
+.mat-dialog-container {
+  max-height: 90vh;       /* que nunca exceda el 90% de la altura de la ventana */
+  overflow-y: auto;       /* habilita scroll vertical */
+  border-radius: 0 !important; /* esquinas cuadradas como pediste */
+}

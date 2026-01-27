@@ -1,0 +1,80 @@
+<h2 mat-dialog-title class="text-lg font-semibold text-gray-800">
+  {{ isEdit ? 'Editar Dirección' : 'Nueva Dirección' }}
+</h2>
+
+<div class="overflow-y-auto max-h-[70vh] p-4">
+<form #addressForm="ngForm"  class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+  <!-- Nombre de la dirección -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Nombre de la dirección</mat-label>
+    <input matInput [(ngModel)]="address.addressName" name="addressName" required />
+  </mat-form-field>
+
+  <!-- Calle -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Calle</mat-label>
+    <input matInput [(ngModel)]="address.street" name="street" required />
+  </mat-form-field>
+
+  <!-- Número exterior -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Número exterior</mat-label>
+    <input matInput [(ngModel)]="address.extNumber" name="extNumber" required />
+  </mat-form-field>
+
+  <!-- Número interior -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Número interior</mat-label>
+    <input matInput [(ngModel)]="address.intNumber" name="intNumber" />
+  </mat-form-field>
+
+  <!-- Colonia -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Colonia</mat-label>
+    <input matInput [(ngModel)]="address.suburb" name="suburb" required />
+  </mat-form-field>
+
+  <!-- Código postal -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Código postal</mat-label>
+    <input matInput [(ngModel)]="address.zip" name="zip" required />
+  </mat-form-field>
+
+  <!-- Dirección completa -->
+  <mat-form-field appearance="outline" class="md:col-span-2 w-full">
+    <mat-label>Dirección completa</mat-label>
+    <textarea matInput rows="2" [(ngModel)]="address.fullAddress" name="fullAddress" disabled="true"></textarea>
+  </mat-form-field>
+
+  <!-- Municipio con filtrado -->
+  <mat-form-field appearance="outline" class="md:col-span-2 w-full">
+    <mat-label>Municipio</mat-label>
+    <mat-select [(ngModel)]="address.idMunicipality" name="idMunicipality" required [compareWith]="compareMunicipality">
+      <mat-option>
+        <input
+          matInput
+          placeholder="Filtrar municipios..."
+          [(ngModel)]="municipalityFilter"
+          (ngModelChange)="filterMunicipalities()"
+          (click)="$event.stopPropagation()"
+          name="municipalityFilter"
+          class="w-full px-2 py-1 border rounded"
+        />
+      </mat-option>
+      <mat-option *ngFor="let m of municipalities$ | async" [value]="m">
+        {{ m.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Botones -->
+  <div class="md:col-span-2 flex justify-end space-x-3 mt-4">
+    <button mat-button mat-dialog-close type="button" (click)="onCancel()">Cancelar</button>
+    <button mat-flat-button color="primary" type="button" [disabled]="!addressForm.form.valid" (click)="saveAddress()">
+      {{ isEdit ? 'Actualizar' : 'Guardar' }}
+    </button>
+  </div>
+  <p *ngIf="successMsg" class="mt-4 text-green-600 text-center">{{ successMsg }}</p>
+  <p *ngIf="errorMsg" class="mt-4 text-red-600 text-center">{{ errorMsg }}</p>
+</form>
+<div>

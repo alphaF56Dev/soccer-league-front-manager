@@ -6,7 +6,7 @@ export interface Address{
     addressName: String,
     street: String,
     extNumber: String,
-    intNumber: String,
+    intNumber?: String,
     suburb: String,
     zip: String,
     fullAddress: String,
