@@ -24,7 +24,6 @@ export class Countries {
   public errorMsg: String = "";
 
   ngOnInit(){
-    console.log("Countries component inicializado");
     this.getCountries();
   }
 

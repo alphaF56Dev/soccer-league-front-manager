@@ -38,4 +38,8 @@ export class Menu {
   goToMembers(){
     this.router.navigate(['/members']);
   }
+
+  goToCategories(){
+    this.router.navigate(['/categories']);
+  }
 }
