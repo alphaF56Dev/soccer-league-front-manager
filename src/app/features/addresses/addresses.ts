@@ -41,9 +41,7 @@ export class Addresses implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log('Updating Addresses!!!');
-        
+      if (result) {        
         this.getAddresses(); // refresca listado
       }
     });
