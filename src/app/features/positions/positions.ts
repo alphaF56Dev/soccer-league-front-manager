@@ -31,11 +31,10 @@ export class Positions implements OnInit{
   }
 
   addPosition(){
-    console.log('Adding new position. . .');
-    
+    this.router.navigate(['/position-form']);    
   }
 
   modifyPosition(id?:Number){
-    console.log('Modifying a position. . .');
+    this.router.navigate(['/edit-position/'+id]);
   }
 }

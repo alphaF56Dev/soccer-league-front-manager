@@ -12,4 +12,12 @@ export class PositionService{
     listPositions(): Observable<PositionCatalog[]>{
         return this.http.get<PositionCatalog[]>(`${this.apiUrl}list-positionscatalog`);
     }
+
+    savePosition(position: PositionCatalog){
+        return this.http.post(`${this.apiUrl}save-positioncatalog`, position);
+    }
+
+    getPositionById(idPosition: Number): Observable<PositionCatalog>{
+        return this.http.get<PositionCatalog>(`${this.apiUrl}get-positioncatalog-byId/${idPosition}`);
+    }
 }

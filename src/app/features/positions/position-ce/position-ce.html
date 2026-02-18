@@ -1,0 +1,65 @@
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-700 to-green-900">
+  <div class="w-full max-w-2xl rounded-lg shadow-lg p-8 bg-white/80 backdrop-blur-sm">
+    <!-- Encabezado -->
+    <div class="flex flex-col items-center mb-6">
+      <img src="assets/position-icon.png" alt="Position Icon" class="w-16 h-16 mb-2" />
+      <h1 class="text-2xl font-bold text-gray-800">
+        {{ position.idPosition ? 'Edit Position' : 'Add Position' }}
+      </h1>
+    </div>
+
+    <!-- Formulario -->
+    <form #positionForm="ngForm" (ngSubmit)="savePosition()" class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+      <!-- Código -->
+      <div>
+        <label class="block text-gray-700">Code</label>
+        <input
+          type="text"
+          [(ngModel)]="position.code"
+          name="code"
+          required
+          maxlength="5"
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <!-- Nombre -->
+      <div class="col-span-3">
+        <label class="block text-gray-700">Name</label>
+        <input
+          type="text"
+          [(ngModel)]="position.name"
+          name="name"
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <!-- Descripción -->
+      <div class="col-span-4">
+        <label class="block text-gray-700">Description</label>
+        <textarea
+          [(ngModel)]="position.description"
+          name="description"
+          rows="3"
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        ></textarea>
+      </div>
+
+      <!-- Botón Guardar -->
+      <div class="col-span-4">
+        <button
+          type="submit"
+          [disabled]="!positionForm.form.valid"
+          class="w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400"
+        >
+          {{ position.idPosition ? '💾 Update Position' : '➕ Add Position' }}
+        </button>
+      </div>
+    </form>
+
+    <!-- Mensajes -->
+    <p *ngIf="successMsg" class="mt-4 text-green-600 text-center">{{ successMsg }}</p>
+    <p *ngIf="errorMsg" class="mt-4 text-red-600 text-center">{{ errorMsg }}</p>
+  </div>
+</div>
