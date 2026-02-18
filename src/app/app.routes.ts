@@ -14,6 +14,7 @@ import { Members } from './features/members/members';
 import { MemberCe } from './features/members/member-ce/member-ce';
 import { Categories } from './features/categories/categories';
 import { CategoryCe } from './features/categories/category-ce/category-ce';
+import { Positions } from './features/positions/positions';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch:'full'},
@@ -36,5 +37,6 @@ export const routes: Routes = [
     {path: 'edit-member/:idMember', component: MemberCe, canActivate:[authGuard]},
     {path: 'categories', component: Categories, canActivate: [authGuard]},
     {path: 'category-form', component: CategoryCe, canActivate: [authGuard]},
-    {path: 'edit-category/:idCategory', component: CategoryCe, canActivate: [authGuard]}
+    {path: 'edit-category/:idCategory', component: CategoryCe, canActivate: [authGuard]},
+    {path: 'positions', component: Positions, canActivate: [authGuard]}
 ];

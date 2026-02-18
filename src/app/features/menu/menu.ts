@@ -42,4 +42,8 @@ export class Menu {
   goToCategories(){
     this.router.navigate(['/categories']);
   }
+
+  goToPositions(){
+    this.router.navigate(['/positions']);
+  }
 }
