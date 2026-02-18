@@ -33,7 +33,10 @@
             <td class="px-4 py-2">{{ category.name }}</td>
             <td class="px-4 py-2">{{ category.minAge }} - {{category.maxAge}}</td>
             <td class="px-4 py-2">{{ category.duration }} mins.</td>
-            <td class="px-4 py-2">{{ category.sex}}</td>
+            <td class="px-4 py-2">
+              {{ category.sex === 'M' ? 'Male' : category.sex === 'F' ? 'Female' : category.sex === 'm' ? 'MIX' : 'Not defined' }}
+            </td>
+
             <td class="px-4 py-2">{{ category.isActive }}</td>
             <td class="px-4 py-2 text-center">
               <button class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400" (click)="modifyCategory(category.idCategoryLeague)">

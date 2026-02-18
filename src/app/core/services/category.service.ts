@@ -12,4 +12,12 @@ export class CategoryService{
     listCategories(): Observable<Category[]>{
         return this.http.get<Category[]>(`${this.urlApi}list-categoryLeague`);
     }
+
+    saveCategory(category: Category): Observable<Category>{
+        return this.http.post<Category>(`${this.urlApi}save-categoryLeague`, category);
+    }
+
+    getCategoryById(categoryId: Number): Observable<Category>{
+        return this.http.get<Category>(`${this.urlApi}get-categoryLeagueById/${categoryId}`);
+    }
 }

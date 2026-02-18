@@ -1,0 +1,122 @@
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-700 to-green-900">
+  <div class="w-full max-w-4xl rounded-lg shadow-lg p-8 bg-white/80 backdrop-blur-sm">
+    <!-- Encabezado -->
+    <div class="flex flex-col items-center mb-6">
+      <img src="assets/category-icon.png" alt="Category Icon" class="w-16 h-16 mb-2" />
+      <h1 class="text-2xl font-bold text-gray-800">
+        {{ category.idCategoryLeague ? 'Edit Category' : 'Add Category' }}
+      </h1>
+    </div>
+
+    <!-- Formulario -->
+    <form #categoryForm="ngForm" (ngSubmit)="saveCategory()" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Nombre -->
+      <div class="col-span-2">
+        <label class="block text-gray-700">Name</label>
+        <input
+          type="text"
+          [(ngModel)]="category.name"
+          name="name"
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <!-- Edad mínima -->
+      <div>
+        <label class="block text-gray-700">Min Age</label>
+        <input
+          type="number"
+          [(ngModel)]="category.minAge"
+          name="minAge"
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <!-- Edad máxima -->
+      <div>
+        <label class="block text-gray-700">Max Age</label>
+        <input
+          type="number"
+          [(ngModel)]="category.maxAge"
+          name="maxAge"
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <!-- Duración -->
+      <div>
+        <label class="block text-gray-700">Duration (mins)</label>
+        <input
+          type="number"
+          [(ngModel)]="category.duration"
+          name="duration"
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <!-- Sexo -->
+      <div>
+        <label class="block text-gray-700">Sex</label>
+        <div class="flex space-x-6 mt-2">
+          <label class="flex items-center space-x-2">
+            <input type="radio" [(ngModel)]="category.sex" name="sex" value="M" />
+            <span>Masculino</span>
+          </label>
+          <label class="flex items-center space-x-2">
+            <input type="radio" [(ngModel)]="category.sex" name="sex" value="F" />
+            <span>Femenino</span>
+          </label>
+          <label class="flex items-center space-x-2">
+            <input type="radio" [(ngModel)]="category.sex" name="sex" value="m" />
+            <span>Mixto</span>
+          </label>
+        </div>
+      </div> 
+
+
+      <!-- Activo -->      
+      <div class="flex items-center space-x-3">
+        <input
+            type="checkbox"
+            [(ngModel)]="category.isActive"
+            name="active"
+            id="active"
+            class="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-2 focus:ring-green-400"
+        />
+        <label for="active" class="text-gray-700 font-medium">
+            Active
+        </label>
+      </div>
+
+      <!-- Descripción -->
+      <div class="col-span-2">
+        <label class="block text-gray-700">Description</label>
+        <textarea
+          [(ngModel)]="category.description"
+          name="description"
+          rows="3"
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        ></textarea>
+      </div>
+
+      <!-- Botón Guardar -->
+      <div class="col-span-2">
+        <button
+          type="submit"
+          [disabled]="!categoryForm.form.valid"
+          class="w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400"
+        >
+          {{ category.idCategoryLeague ? '💾 Actualizar Categoría' : '➕ Registrar Categoría' }}
+        </button>
+      </div>
+    </form>
+
+    <!-- Mensajes -->
+    <p *ngIf="successMsg" class="mt-4 text-green-600 text-center">{{ successMsg }}</p>
+    <p *ngIf="errorMsg" class="mt-4 text-red-600 text-center">{{ errorMsg }}</p>
+  </div>
+</div>

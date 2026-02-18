@@ -13,6 +13,7 @@ import { MemberTypeCe } from './features/members-type/member-type-ce/member-type
 import { Members } from './features/members/members';
 import { MemberCe } from './features/members/member-ce/member-ce';
 import { Categories } from './features/categories/categories';
+import { CategoryCe } from './features/categories/category-ce/category-ce';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch:'full'},
@@ -33,5 +34,7 @@ export const routes: Routes = [
     {path: 'members', component: Members, canActivate: [authGuard]},
     {path: 'member-form', component: MemberCe, canActivate: [authGuard]},
     {path: 'edit-member/:idMember', component: MemberCe, canActivate:[authGuard]},
-    {path: 'categories', component: Categories, canActivate: [authGuard]}
+    {path: 'categories', component: Categories, canActivate: [authGuard]},
+    {path: 'category-form', component: CategoryCe, canActivate: [authGuard]},
+    {path: 'edit-category/:idCategory', component: CategoryCe, canActivate: [authGuard]}
 ];
