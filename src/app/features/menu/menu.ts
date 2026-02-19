@@ -46,4 +46,8 @@ export class Menu {
   goToPositions(){
     this.router.navigate(['/positions']);
   }
+
+  goToTeams(){
+    this.router.navigate(['/teams']);
+  }
 }

@@ -1,0 +1,72 @@
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-700 to-green-900">
+  <div class="w-full max-w-4xl bg-white rounded-lg shadow-lg p-8">
+    <div class="flex flex-col items-center mb-6">
+      <app-menu-button></app-menu-button>
+      <img src="assets/soccer-ball.png" alt="Soccer Logo" class="w-16 h-16 mb-2" />
+      <h1 class="text-2xl font-bold text-gray-800">Teams</h1>
+      <p class="text-gray-500 text-sm">List of teams</p>
+      <button 
+        (click)="addTeam()" 
+        class="mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400">
+          + Add
+      </button>
+    </div>
+
+    
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-200 rounded-lg shadow-sm">
+
+        <thead class="bg-green-700 text-white">
+          <tr>
+            <!-- <th class="px-4 py-2 text-left">ID</th>-->
+            <th class="px-4 py-2 text-left">
+                Name
+                <input type="text" (input)="filters.name.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-left">
+                Owner
+                <input type="text" (input)="filters.owner.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-left">
+                Owner Email
+                <input type="text" (input)="filters.ownerEmail.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>            
+            <th class="px-4 py-2 text-left">
+                Created On
+                <input type="text" (input)="filters.createdOn.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-left">
+                Active
+            </th>
+            <th class="px-4 py-2 text-center">
+                Options
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let team of filteredTeams$ | async" class="border-b hover:bg-green-50">
+            <td class="px-4 py-2">{{ team.name }}</td>
+            <td class="px-4 py-2">{{ team.memberName }}</td>            
+            <td class="px-4 py-2">{{ team.email }}</td>
+            <td class="px-4 py-2">{{ team.registrationDate }}</td>
+            <td class="px-4 py-2">{{ team.isActive }}</td>
+            <td class="px-4 py-2 text-center">
+              <button class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400" (click)="modifyTeam(team.idTeam)">
+                Edit
+              </button>
+              <!--<button class="ml-2 px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:ring-2 focus:ring-red-400">
+                Delete 
+              </button>-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <p class="mt-6 text-center text-sm text-gray-500">
+      © 2026 Soccer League Management
+    </p>
+  </div>
+</div>
