@@ -1,0 +1,117 @@
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-700 to-green-900">
+  <div class="w-full max-w-4xl rounded-lg shadow-lg p-8 bg-white/80 backdrop-blur-sm">
+    <app-nav-button path="/teams" label="Back Teams"></app-nav-button>
+    <!-- Encabezado -->
+    <div class="flex flex-col items-center mb-6">
+      <img src="assets/team-icon.png" alt="Team Icon" class="w-16 h-16 mb-2" />
+      <h1 class="text-2xl font-bold text-gray-800">
+        {{ team.idTeam ? 'Edit Team' : 'Add Team' }}
+      </h1>
+    </div>
+
+    <!-- Formulario -->
+    <form #teamForm="ngForm" (ngSubmit)="saveTeam()" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Nombre -->
+      <div class="col-span-2"> 
+        <label class="block text-gray-700">Name</label>
+        <input
+          type="text"
+          [(ngModel)]="team.name"
+          name="name"
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <!-- Responsable (Member) -->
+      <div class="col-span-2">
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Select Owner</mat-label>
+            <mat-select [(value)]="team.member" [compareWith]="compareMember">
+                <!-- Input de búsqueda dentro del panel -->
+                <mat-option>
+                <input
+                    matInput
+                    placeholder="FIlter..."
+                    (click)="$event.stopPropagation()"
+                    (input)="memberFilter$.next($event.target.value)"
+                />
+                </mat-option>
+
+                <!-- Opciones filtradas -->
+                <mat-option *ngFor="let member of filteredMembers$ | async" [value]="member">
+                {{ member.phone.slice(-3) }}-{{ member.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- Fecha de registro -->
+      <!--<div>
+        <label class="block text-gray-700"></label>
+        <input
+          type="date"
+          [(ngModel)]="team.registrationDate"
+          name="registrationDate"
+          required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div> -->
+
+      <!-- Activo -->
+      <div class="flex items-center space-x-3">
+        <input
+            type="checkbox"
+            [(ngModel)]="team.isActive"
+            name="active"
+            id="active"
+            class="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-2 focus:ring-green-400"
+        />
+        <label for="active" class="text-gray-700 font-medium">
+            Active
+        </label>
+      </div>
+
+      <!-- Botón Guardar -->
+      <div class="col-span-2">
+        <button
+          type="submit"
+          [disabled]="!teamForm.form.valid"
+          class="w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400"
+        >
+          {{ team.idTeam ? '💾 Actualizar Equipo' : '➕ Registrar Equipo' }}
+        </button>
+      </div>
+    </form>
+
+    <!-- Tabulador inferior -->
+    <mat-tab-group class="mt-8" *ngIf="isEdit">
+      <mat-tab label="Owner Information">
+        <div class="p-4">
+          <!-- Espacio para información adicional -->
+          <p>Owner information</p>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Categories">
+        <div class="p-4">
+          <!-- Aquí renderizas las categorías asignadas -->
+         <!-- <p *ngIf="!team.categories || team.categories.length === 0">No hay categorías asignadas.</p>
+          <ul *ngIf="team.categories && team.categories.length > 0">
+            <li *ngFor="let cat of team.categories">{{ cat.name }}</li>
+          </ul>-->
+        </div>        
+      </mat-tab>      
+
+      <mat-tab label="Players">
+        <div class="p-4">
+          <!-- Here will be owner information -->
+          <p *ngIf="!team.member">List of players</p>
+        </div>
+      </mat-tab>      
+    </mat-tab-group>
+
+    <!-- Mensajes -->
+    <p *ngIf="successMsg" class="mt-4 text-green-600 text-center">{{ successMsg }}</p>
+    <p *ngIf="errorMsg" class="mt-4 text-red-600 text-center">{{ errorMsg }}</p>
+  </div>
+</div>

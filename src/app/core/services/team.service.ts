@@ -13,4 +13,12 @@ export class TeamService{
     listTeams(): Observable<TeamDto[]>{
         return this.http.get<TeamDto[]>(`${this.apiUrl}list-teams`);
     }
+
+    saveTeam(team: Team):Observable<Team>{
+        return this.http.post<Team>(`${this.apiUrl}save-team`, team);
+    }
+
+    getTeamById(idTeam: Number): Observable<Team>{
+        return this.http.get<Team>(`${this.apiUrl}get-team-byId/${idTeam}`);
+    }
 }
