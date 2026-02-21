@@ -1,0 +1,66 @@
+<div  >
+  <div class="w-full max-w-3xl rounded-lg shadow-lg p-8 bg-white">
+    <!-- Encabezado -->
+    <div class="flex items-center mb-6">
+      <!-- Foto del Member -->
+      <div class="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center mr-6">
+        <span class="text-gray-600 text-sm">Photo</span>
+      </div>
+
+      <div>
+        <h1 class="text-2xl font-bold text-gray-800">Owner of the team</h1>
+        <p class="text-gray-600 text-sm">Information</p>
+      </div>
+    </div>
+
+    <!-- Datos del Member en dos columnas -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <span class="font-semibold text-gray-700">Name:</span>
+        <span class="text-gray-800">{{ member.name }}</span>
+      </div>
+
+      <div>
+        <span class="font-semibold text-gray-700">Type:</span>
+        <span class="text-gray-800">{{ member.memberType.name }}</span>
+      </div>
+
+      <div>
+        <span class="font-semibold text-gray-700">ID:</span>
+        <span class="text-gray-800">{{ member.personalId }}</span>
+      </div>
+
+      <div>
+        <span class="font-semibold text-gray-700">Birthday:</span>
+        <span class="text-gray-800">{{ member.birthday }}</span>
+      </div>
+
+      <div>
+        <span class="font-semibold text-gray-700">Phone:</span>
+        <span class="text-gray-800">{{ member.phone }}</span>
+      </div>
+
+      <div>
+        <span class="font-semibold text-gray-700">Sex:</span>
+        <span class="text-gray-800">
+          {{ member.sex === 'M' ? 'Masculino' : 'Female' }}
+        </span>
+      </div>
+
+      <div>
+        <span class="font-semibold text-gray-700">Email:</span>
+        <span class="text-gray-800">{{ member.email }}</span>
+      </div>
+
+      <div>
+        <span class="font-semibold text-gray-700">Nationality:</span>
+        <span class="text-gray-800">{{ member.nationality }}</span>
+      </div>
+
+      <div>
+        <span class="font-semibold text-gray-700">Status:</span>
+        <span class="text-gray-800">{{ member.isActive ? 'Active' : 'Inactive' }}</span>
+      </div>
+    </div>
+  </div>
+</div>

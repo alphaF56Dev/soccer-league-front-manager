@@ -13,6 +13,7 @@ import { TeamService } from '../../../core/services/team.service';
 import { MemberService } from '../../../core/services/member.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavButton } from "../../common-components/nav-button/nav-button";
+import { MemberInfo } from "../../members/member-info/member-info";
 
 @Component({
   selector: 'app-team-ce',
@@ -24,7 +25,8 @@ import { NavButton } from "../../common-components/nav-button/nav-button";
     MatSelectModule,
     MatInputModule,
     MatOptionModule,
-    NavButton
+    NavButton,
+    MemberInfo
 ],
   templateUrl: './team-ce.html',
   styleUrl: './team-ce.css',
