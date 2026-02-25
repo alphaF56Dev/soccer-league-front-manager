@@ -1,0 +1,43 @@
+<div class="w-full rounded-lg shadow-lg p-6 bg-white">
+  <!-- Encabezado -->
+  <h2 class="text-xl font-bold text-gray-800 mb-4">Categorías del Equipo</h2>
+  <p class="text-gray-600 text-sm mb-6">
+    Selecciona las categorías en las que el equipo está presente
+  </p>
+
+  <!-- Mensajes -->
+  <div *ngIf="successMsg" class="mb-4 flex items-center justify-between bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded">
+    <span>{{ successMsg }}</span>
+    <button (click)="successMsg = ''" class="text-green-700 font-bold">✕</button>
+  </div>
+
+  <div *ngIf="errorMsg" class="mb-4 flex items-center justify-between bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
+    <span>{{ errorMsg }}</span>
+    <button (click)="errorMsg = ''" class="text-red-700 font-bold">✕</button>
+  </div>
+
+  <!-- Grupo de checkboxes -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <label
+      *ngFor="let category of teamCategories"
+      class="flex items-start space-x-3 p-4 border rounded-lg hover:bg-green-50 cursor-pointer shadow-sm"
+    >
+      <!-- Checkbox -->
+      <input
+        type="checkbox"
+        [checked]="category.checked"
+        (change)="actionOnCheck(category.idCategoryLeague, $event.target.checked)"
+        class="mt-1 h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-green-500"
+      />
+
+      <!-- Tarjeta informativa -->
+      <div class="flex flex-col">
+        <span class="text-lg font-semibold text-gray-800">{{ category.name }}</span>
+        <span class="text-sm text-gray-600">Age: {{ category.minAge }} - {{ category.maxAge }}</span>
+        <span class="text-sm text-gray-600">Duration: {{ category.duration }} min</span>
+        <span class="text-sm text-gray-600">Sex: {{ category.sex === 'M' ? 'Male' : category.sex === 'F' ? 'Female' : category.sex === 'm' ? 'MIX' : 'Not defined' }}</span>
+      </div>
+    </label>
+  </div>
+
+</div>

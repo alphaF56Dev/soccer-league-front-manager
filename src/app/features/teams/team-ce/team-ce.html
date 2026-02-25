@@ -101,6 +101,7 @@
           <ul *ngIf="team.categories && team.categories.length > 0">
             <li *ngFor="let cat of team.categories">{{ cat.name }}</li>
           </ul>-->
+          <app-categories-by-team [idTeam]="team.idTeam ?? 0"></app-categories-by-team>
         </div>        
       </mat-tab>      
 

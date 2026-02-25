@@ -24,3 +24,14 @@ export interface TeamDto{
     memberIsActive: String, 
     nationality: String
 }
+
+export interface TeamCategoryDto{
+    idCategoryLeague: number, 
+    name: string,
+    isActive: boolean,
+    minAge: number,
+    maxAge: number, 
+    duration: number,
+    sex: string,
+    checked: boolean
+}

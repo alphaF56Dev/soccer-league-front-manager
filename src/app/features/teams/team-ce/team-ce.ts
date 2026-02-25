@@ -14,6 +14,7 @@ import { MemberService } from '../../../core/services/member.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavButton } from "../../common-components/nav-button/nav-button";
 import { MemberInfo } from "../../members/member-info/member-info";
+import { CategoriesByTeam } from "../../categories/categories-by-team/categories-by-team";
 
 @Component({
   selector: 'app-team-ce',
@@ -26,7 +27,8 @@ import { MemberInfo } from "../../members/member-info/member-info";
     MatInputModule,
     MatOptionModule,
     NavButton,
-    MemberInfo
+    MemberInfo,
+    CategoriesByTeam
 ],
   templateUrl: './team-ce.html',
   styleUrl: './team-ce.css',
@@ -65,7 +67,8 @@ export class TeamCe implements OnInit{
     if(id){
       this.getTeam(+id);
       this.isEdit = true;
-    }
+      this.cd.detectChanges();
+    }    
   }
 
   saveTeam(){

@@ -1,5 +1,5 @@
 export interface Category{
-    idCategoryLeague?: Number,
+    idCategoryLeague?: number,
     name: String,
     isActive: boolean,
     minAge: Number,
