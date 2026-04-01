@@ -42,7 +42,7 @@
             <td class="px-4 py-2">{{ member.name }}</td>
             <td class="px-4 py-2">{{ member.email }}</td>
             <td class="px-4 py-2">{{ member.memberType.name }}</td>
-            <td class="px-4 py-2">{{ member.sex }}</td>
+            <td class="px-4 py-2">{{ member.sex === 'F' ? 'Female' : member.sex === 'M' ? 'Male' : 'Undefined'}}</td>
             <td class="px-4 py-2 text-center">
               <button
                 (click)="modifyMember(member.idMember)"
