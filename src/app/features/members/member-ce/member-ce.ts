@@ -10,12 +10,13 @@ import { MemberTypeService } from '../../../core/services/membertype.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavButton } from "../../common-components/nav-button/nav-button";
 import { Addresses } from "../../addresses/addresses";
+import { PlayerCe } from "../../players/player-ce/player-ce";
 
 @Component({
   selector: 'app-member-ce',
   imports: [CommonModule,
     FormsModule,
-    MatTabsModule, NavButton, Addresses],
+    MatTabsModule, NavButton, Addresses, PlayerCe],
   templateUrl: './member-ce.html',
   styleUrl: './member-ce.css',
 })
