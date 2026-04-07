@@ -1,0 +1,47 @@
+<div class="w-full rounded-lg shadow-lg p-6 bg-white">
+  <!-- Encabezado -->
+  <!--<h2 class="text-2xl font-bold text-gray-800 mb-6">Player Teams</h2>-->
+
+  <!-- Botón para agregar equipo -->
+  <div class="mt-6">
+    <button
+      class="px-4 py-2 bg-green-600 text-white text-lg font-semibold rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400"
+      (click)="addNewTeam(+idMember)"
+    >
+      Add team
+    </button>
+  </div>
+
+  <br>
+
+  <!-- Listado de equipos -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div
+      *ngFor="let team of $playerTeams | async"
+      class="p-4 border rounded-lg shadow-sm hover:bg-green-50 flex flex-col justify-between"
+    >
+      <!-- Información principal -->
+      <div class="space-y-2">
+        <h3 class="text-lg font-semibold text-gray-800">{{ team.teamName }}</h3>
+        <p class="text-sm text-gray-600">Category: {{ team.categoryName }}</p>
+        <p class="text-sm text-gray-600">
+          Age: {{ team.minAge }} - {{ team.maxAge }}
+        </p>
+        <p class="text-sm text-gray-600">Number player: {{ team.player_number }}</p>
+        <p class="text-sm text-gray-600">
+          Added On: {{ team.registration_date | date:'dd/MM/yyyy' }}
+        </p>
+      </div>
+
+      <!-- Botón de borrado -->
+      <div class="pt-4">
+        <button
+          (click)="removeTeam(team.idPlayerCategory)"
+          class="px-3 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 focus:ring-2 focus:ring-red-400"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

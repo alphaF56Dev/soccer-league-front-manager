@@ -102,6 +102,9 @@
         <mat-tab label="Player" *ngIf="member.memberType.code === 'FP'">
           <app-player-ce idMember="{{idMember}}"></app-player-ce>
         </mat-tab>
+        <mat-tab label="Teams" *ngIf="member.memberType.code === 'FP'">
+          <app-teams-by-player idMember="{{idMember}}"></app-teams-by-player>
+        </mat-tab>
       </mat-tab-group>
     </div>
 

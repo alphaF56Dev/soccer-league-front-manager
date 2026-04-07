@@ -11,12 +11,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavButton } from "../../common-components/nav-button/nav-button";
 import { Addresses } from "../../addresses/addresses";
 import { PlayerCe } from "../../players/player-ce/player-ce";
+import { TeamsByPlayer } from "../../teams/teams-by-player/teams-by-player";
 
 @Component({
   selector: 'app-member-ce',
   imports: [CommonModule,
     FormsModule,
-    MatTabsModule, NavButton, Addresses, PlayerCe],
+    MatTabsModule, NavButton, Addresses, PlayerCe, TeamsByPlayer],
   templateUrl: './member-ce.html',
   styleUrl: './member-ce.css',
 })

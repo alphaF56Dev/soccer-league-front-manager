@@ -42,7 +42,6 @@ export class PlayerCe implements OnInit, OnChanges{
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes['idMember']){
-      console.log('Cambio detectado');
       this.player.member.idMember = +this.idMember;
       this.getPlayerInfoByIdMember(+this.idMember);
     }
