@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { TeamCategoryDto } from "../../shared/models/team.model";
+import { Team, TeamCategoryDto } from "../../shared/models/team.model";
+import { TeamCategoryLeague } from "../../shared/models/team-category.model";
 
 @Injectable({providedIn: 'root'})
 export class TeamCategoryService{
@@ -19,5 +20,9 @@ export class TeamCategoryService{
 
     removeCategoryOfTeam(idTeam: Number, idCategory: number){
         return this.http.put(`${this.urlApi}remove-category-from-team/${idTeam}/${idCategory}`, {});
+    }
+
+    listTeamsByCategory(idCategoryLeague: Number):Observable<TeamCategoryLeague[]>{
+        return this.http.get<TeamCategoryLeague[]>(`${this.urlApi}get-teamsByIdCategoryLeague/${idCategoryLeague}`);
     }
 }

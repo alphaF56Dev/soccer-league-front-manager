@@ -12,6 +12,8 @@ import { NavButton } from "../../common-components/nav-button/nav-button";
 import { Addresses } from "../../addresses/addresses";
 import { PlayerCe } from "../../players/player-ce/player-ce";
 import { TeamsByPlayer } from "../../teams/teams-by-player/teams-by-player";
+import { Player } from '../../../shared/models/player.model';
+import { PlayerService } from '../../../core/services/player.service';
 
 @Component({
   selector: 'app-member-ce',
@@ -27,7 +29,8 @@ export class MemberCe implements OnInit{
     private memberSrv: MemberService, 
     private mtSrv: MemberTypeService,
     private cd: ChangeDetectorRef,
-    private zone: NgZone
+    private zone: NgZone,
+    private playerSrv: PlayerService
   ){}
 
   router = inject(Router);
@@ -46,6 +49,8 @@ export class MemberCe implements OnInit{
     nationality: ''
   };
 
+  player: Player = {} as Player;
+
   memberstype$ !: Observable<MemberType[]>;
   isEdit = false;
   successMsg ='';
@@ -54,7 +59,8 @@ export class MemberCe implements OnInit{
 
 
   ngOnInit() {
-    this.getMembersType();    
+    this.getMembersType(); 
+    
   }
 
   ngAfterViewInit(){
@@ -63,6 +69,7 @@ export class MemberCe implements OnInit{
       this.idMember = +id;
       this.isEdit = true;
       this.getMember(+id);
+         
     }
   }
 
@@ -107,8 +114,23 @@ export class MemberCe implements OnInit{
       next: (res) => {
         this.member = { ... res};
         Promise.resolve().then(() => this.cd.detectChanges());
+        if(this.member.memberType.code === 'FP'){
+          console.log('Entra a la condicional.........');
+          
+          this.getPlayerInfo(+this.idMember);
+        }
       }, error: () =>{
         this.errorMsg = "Ups! something was wrong getting member information, please contact your support!!";
+      }
+    });
+  }
+
+  getPlayerInfo(idMember: number){
+    this.playerSrv.getPlayerByIdMember(idMember).subscribe({
+      next: (res) => {
+        if (res) {
+          this.player = {... res};
+        }
       }
     });
   }

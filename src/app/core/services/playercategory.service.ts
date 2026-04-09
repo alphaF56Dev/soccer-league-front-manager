@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { PlayerCategoryDto } from "../../shared/models/playercategory.model";
+import { PlayerCategory, PlayerCategoryDto } from "../../shared/models/playercategory.model";
 
 @Injectable({providedIn: 'root'})
 export class PlayerCategoryService{
@@ -14,5 +14,9 @@ export class PlayerCategoryService{
     
     getTeamsByIdMember(idMember: Number): Observable<PlayerCategoryDto[]>{
         return this.http.get<PlayerCategoryDto[]>(`${this.apiUrl}list-teams-byIdMember/${idMember}`);
+    }
+
+    saveTeamToPlayer(playerTeam:PlayerCategory): Observable<string>{
+        return this.http.post<string>(`${this.apiUrl}addPlayerToCategory`, playerTeam);
     }
 }

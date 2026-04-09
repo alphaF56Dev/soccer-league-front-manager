@@ -20,4 +20,8 @@ export class CategoryService{
     getCategoryById(categoryId: Number): Observable<Category>{
         return this.http.get<Category>(`${this.urlApi}get-categoryLeagueById/${categoryId}`);
     }
+
+    getCategoriesAvailablesByMemberId(idMember: Number): Observable<Category[]>{
+        return this.http.get<Category[]>(`${this.urlApi}get-categoriesAvailableToMember/${idMember}`);
+    }
 }

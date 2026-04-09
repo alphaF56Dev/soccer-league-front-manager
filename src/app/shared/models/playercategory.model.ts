@@ -2,12 +2,12 @@ import { Player } from "./player.model";
 import { Team } from "./team.model";
 
 export interface PlayerCategory{
-    idPlayerCategory: number,
+    idPlayerCategory?: number,
     teamCategoryLeague: {
         idTeamCategoryLeague: number
     },
     player: Player,
-    registrationDate: string,
+    registrationDate?: string,
     playerNumber: number
 }
 

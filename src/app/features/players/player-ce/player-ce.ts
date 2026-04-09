@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Player } from '../../../shared/models/player.model';
 import { Member } from '../../../shared/models/member.model';
@@ -7,6 +7,7 @@ import { PositionCatalog } from '../../../shared/models/position.model';
 import { observable, Observable } from 'rxjs';
 import { PositionService } from '../../../core/services/position.service';
 import { PlayerService } from '../../../core/services/player.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-player-ce',
@@ -21,6 +22,7 @@ export class PlayerCe implements OnInit, OnChanges{
 
   @Input() idMember !: string;
 
+  router = inject(Router);
   player: Player = {
     member: {} as Member,
     position: {} as PositionCatalog,
@@ -57,6 +59,7 @@ export class PlayerCe implements OnInit, OnChanges{
         this.errorMsg = '';
         this.successMsg = 'Role player information saved!';
         this.cd.detectChanges();
+        this.router.navigate(['/edit-member/' + this.idMember]);      
       },error: () => {
         this.successMsg = '';
         this.errorMsg = 'Ups, something was wrong trying to save the player information, please contact your administrator!!!';

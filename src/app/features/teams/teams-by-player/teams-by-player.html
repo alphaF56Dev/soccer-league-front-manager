@@ -6,7 +6,7 @@
   <div class="mt-6">
     <button
       class="px-4 py-2 bg-green-600 text-white text-lg font-semibold rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400"
-      (click)="addNewTeam(+idMember)"
+      (click)="addNewTeam()"
     >
       Add team
     </button>
@@ -45,3 +45,11 @@
     </div>
   </div>
 </div>
+
+<app-add-team-player
+  *ngIf="showAddTeamModal"
+  [idMember]="idMember"
+  [idPlayer]="idPlayer"
+  (saved)="onTeamSaved()"
+  (closed)="closeAddTeamModal()"
+></app-add-team-player>
