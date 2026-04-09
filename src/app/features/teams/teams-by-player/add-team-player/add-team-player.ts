@@ -74,8 +74,6 @@ export class AddTeamPlayer implements OnInit{
           this.closeModal();
         }, 3000);
       }, error: (err) => {
-        console.log("error objecto -........", err);
-        
         this.errorMsg = err.error;
         this.cd.detectChanges();
       }
