@@ -13,6 +13,8 @@
   </div>
 
   <br>
+  <p *ngIf="successMsg" class="mt-4 text-green-600 text-center">{{ successMsg }}</p>
+  <p *ngIf="errorMsg" class="mt-4 text-red-600 text-center">{{ errorMsg }}</p>
 
   <!-- Listado de equipos -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -40,7 +42,7 @@
           class="px-3 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 focus:ring-2 focus:ring-red-400"
         >
           Remove
-        </button>
+        </button>        
       </div>
     </div>
   </div>

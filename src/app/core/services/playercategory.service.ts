@@ -19,4 +19,8 @@ export class PlayerCategoryService{
     saveTeamToPlayer(playerTeam:PlayerCategory): Observable<string>{
         return this.http.post<string>(`${this.apiUrl}addPlayerToCategory`, playerTeam);
     }
+
+    removeTeaamFromPlayer(idPlayerCategory: number){
+        return this.http.delete(`${this.apiUrl}remove-byIdPlayerCetagory/${idPlayerCategory}`);  
+    }
 }

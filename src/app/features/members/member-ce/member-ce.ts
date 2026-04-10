@@ -114,9 +114,7 @@ export class MemberCe implements OnInit{
       next: (res) => {
         this.member = { ... res};
         Promise.resolve().then(() => this.cd.detectChanges());
-        if(this.member.memberType.code === 'FP'){
-          console.log('Entra a la condicional.........');
-          
+        if(this.member.memberType.code === 'FP'){          
           this.getPlayerInfo(+this.idMember);
         }
       }, error: () =>{

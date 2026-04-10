@@ -1,4 +1,4 @@
-import { Component, input, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, input, Input, OnInit } from '@angular/core';
 import { PlayerCategoryService } from '../../../core/services/playercategory.service';
 import { Observable } from 'rxjs';
 import { PlayerCategoryDto } from '../../../shared/models/playercategory.model';
@@ -21,9 +21,12 @@ export class TeamsByPlayer implements OnInit{
   @Input() idPlayer!: string;
    $playerTeams!: Observable<PlayerCategoryDto[]>;
   showAddTeamModal = false;
+  successMsg='';
+  errorMsg='';
 
   constructor(
-    private srvPlayerCat: PlayerCategoryService
+    private playerCatSrv: PlayerCategoryService,
+    private cd: ChangeDetectorRef
   ){}
 
   ngOnInit(){
@@ -31,7 +34,7 @@ export class TeamsByPlayer implements OnInit{
   }
 
   loadTeamsByidMember(idMember: Number){
-    this.$playerTeams = this.srvPlayerCat.getTeamsByIdMember(idMember);
+    this.$playerTeams = this.playerCatSrv.getTeamsByIdMember(idMember);
   }
 
   addNewTeam(){
@@ -39,11 +42,27 @@ export class TeamsByPlayer implements OnInit{
   }
 
   removeTeam(idPlayerCategory:number){
-    console.log('Removing team from the member');    
+    const confirmed = window.confirm('Are you sure you want do remove the team from this player?');
+    if(!confirmed){
+      return;
+    }
+
+    this.playerCatSrv.removeTeaamFromPlayer(idPlayerCategory).subscribe({
+      next: () => {
+        this.successMsg = 'Team removed successfully!';
+        this.errorMsg = '';
+        this.loadTeamsByidMember(+this.idMember); 
+        this.cd.detectChanges();
+      }, error: () => {
+        this.errorMsg = 'Something was wrong trying to remove the team from the player, please contact your administrator!!!';
+        this.cd.detectChanges();
+      }
+    });
   }
 
   closeAddTeamModal() {
     this.showAddTeamModal = false;
+    this.loadTeamsByidMember(+this.idMember);
   }
 
   onTeamSaved() {
