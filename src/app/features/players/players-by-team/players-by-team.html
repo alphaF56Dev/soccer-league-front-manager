@@ -1,0 +1,120 @@
+<div class="w-full rounded-lg shadow-lg p-6 bg-white">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6">Players</h2>
+
+  <!-- Filtros -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+    <input
+      type="text"
+      (input)="setNicknameFilter($event.target.value)"
+      placeholder="Nickname"
+      class="border rounded-md px-3 py-2 w-full"
+    />
+    <input
+      type="text"
+      (input)="setCategoryFilter($event.target.value)"
+      placeholder="Category"
+      class="border rounded-md px-3 py-2 w-full"
+    />
+    <input
+      type="text"
+      (input)="setPlayerNumberFilter($event.target.value)"
+      placeholder="Player Number"
+      class="border rounded-md px-3 py-2 w-full"
+    />
+  </div>
+
+  <p *ngIf="successMsg" class="mt-4 text-green-600 text-center">{{ successMsg }}</p>
+  <p *ngIf="errorMsg" class="mt-4 text-red-600 text-center">{{ errorMsg }}</p>
+
+  <!-- Listado -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div
+      *ngFor="let player of filteredPlayers$ | async"
+      class="p-4 border rounded-lg shadow-sm hover:bg-green-50 flex flex-col justify-between"
+    >
+      <div class="space-y-2">
+        <h3 class="text-lg font-semibold text-gray-800">{{ player.nickname }}</h3>
+        <p class="text-sm text-gray-600">Categoría: {{ player.categoryName }}</p>
+        <p class="text-sm text-gray-600">Rango de edad: {{ player.minAge }} - {{ player.maxAge }}</p>
+        <p class="text-sm text-gray-600">Número de playera: {{ player.player_number }}</p>
+        <p class="text-sm text-gray-600">
+          Fecha de registro: {{ player.registration_date | date:'dd/MM/yyyy' }}
+        </p>
+        <div class="pt-4">
+            <button
+            (click)="removePlayer(player.idPlayerCategory)"
+            class="px-3 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 focus:ring-2 focus:ring-red-400"
+            >
+            Remove
+            </button>        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-700 to-green-900">
+  <div class="w-full max-w-4xl bg-white rounded-lg shadow-lg p-8">
+    <div class="flex flex-col items-center mb-6">
+      <app-menu-button></app-menu-button>
+      <img src="assets/soccer-ball.png" alt="Soccer Logo" class="w-16 h-16 mb-2" />
+      <h1 class="text-2xl font-bold text-gray-800">Players</h1>
+      <p class="text-gray-500 text-sm">List of players by Team</p>      
+    </div>
+
+    
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-200 rounded-lg shadow-sm">
+
+        <thead class="bg-green-700 text-white">
+          <tr>
+            <-- <th class="px-4 py-2 text-left">ID</th>--
+            <th class="px-4 py-2 text-left">
+                Nickname
+                <input type="text" (input)="filters.nickname.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-left">
+                Category
+                <input type="text" (input)="filters.category.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-left">
+                Player Number
+                <input type="text" (input)="filters.playerNumber.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>
+            <th class="px-4 py-2 text-left">
+                Age
+                <input type="text" (input)="filters.age.next($event.target.value)" placeholder="Filter..." class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" />
+            </th>            
+            <th class="px-4 py-2 text-center">
+                Options
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let player of filteredPlayers$ | async" class="border-b hover:bg-green-50">
+            <td class="px-4 py-2">{{ player.nickname }}</td>
+            <td class="px-4 py-2">{{ player.categoryName }}</td>  
+            <td class="px-4 py-2">{{ player.player_number}}</td>          
+            <td class="px-4 py-2">{{ player.minAge  }} "-" {{player.maxAge}}</td>            
+            <td class="px-4 py-2 text-center">
+              <button class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400" (click)="removePlayer(player.idPlayerCategory)">
+                Edit
+              </button>
+              <--<button class="ml-2 px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:ring-2 focus:ring-red-400">
+                Delete 
+              </button>--
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <-- Footer --
+    <p class="mt-6 text-center text-sm text-gray-500">
+      © 2026 Soccer League Management
+    </p>
+  </div>
+</div> -->

@@ -16,6 +16,10 @@ export class PlayerCategoryService{
         return this.http.get<PlayerCategoryDto[]>(`${this.apiUrl}list-teams-byIdMember/${idMember}`);
     }
 
+    getPlayersByIdTeam(idTeam: number):Observable<PlayerCategoryDto[]>{
+        return this.http.get<PlayerCategoryDto[]>(`${this.apiUrl}list-players-byIdTeam/${idTeam}`);
+    }
+
     saveTeamToPlayer(playerTeam:PlayerCategory): Observable<string>{
         return this.http.post<string>(`${this.apiUrl}addPlayerToCategory`, playerTeam);
     }

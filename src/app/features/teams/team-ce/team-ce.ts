@@ -15,6 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavButton } from "../../common-components/nav-button/nav-button";
 import { MemberInfo } from "../../members/member-info/member-info";
 import { CategoriesByTeam } from "../../categories/categories-by-team/categories-by-team";
+import { PlayersByTeam } from "../../players/players-by-team/players-by-team";
 
 @Component({
   selector: 'app-team-ce',
@@ -28,7 +29,8 @@ import { CategoriesByTeam } from "../../categories/categories-by-team/categories
     MatOptionModule,
     NavButton,
     MemberInfo,
-    CategoriesByTeam
+    CategoriesByTeam,
+    PlayersByTeam
 ],
   templateUrl: './team-ce.html',
   styleUrl: './team-ce.css',

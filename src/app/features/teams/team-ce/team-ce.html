@@ -105,10 +105,10 @@
         </div>        
       </mat-tab>      
 
-      <mat-tab label="Players">
+      <mat-tab label="Players" *ngIf="team && team.idTeam">
         <div class="p-4">
           <!-- Here will be owner information -->
-          <p *ngIf="!team.member">List of players</p>
+          <app-players-by-team idTeam={{team.idTeam}}></app-players-by-team>
         </div>
       </mat-tab>      
     </mat-tab-group>
