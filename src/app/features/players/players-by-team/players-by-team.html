@@ -40,14 +40,18 @@
         <p class="text-sm text-gray-600">
           Fecha de registro: {{ player.registration_date | date:'dd/MM/yyyy' }}
         </p>
-        <div class="pt-4">
-            <button
+        <button
+            (click)="goToPlayer(player.idMember)"
+            class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400"
+        >        
+            Go info
+        </button>
+        <button
             (click)="removePlayer(player.idPlayerCategory)"
-            class="px-3 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 focus:ring-2 focus:ring-red-400"
+            class="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:ring-2 focus:ring-red-400"
             >
             Remove
-            </button>        
-        </div>
+        </button> 
       </div>
     </div>
   </div>

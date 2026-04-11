@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, input, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, input, Input, OnInit } from '@angular/core';
 import { PlayerCategoryService } from '../../../core/services/playercategory.service';
 import { Observable } from 'rxjs';
 import { PlayerCategoryDto } from '../../../shared/models/playercategory.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AddTeamPlayer } from "./add-team-player/add-team-player";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-teams-by-player',
@@ -19,10 +20,11 @@ import { AddTeamPlayer } from "./add-team-player/add-team-player";
 export class TeamsByPlayer implements OnInit{
   @Input() idMember!: string;
   @Input() idPlayer!: string;
-   $playerTeams!: Observable<PlayerCategoryDto[]>;
+  $playerTeams!: Observable<PlayerCategoryDto[]>;
   showAddTeamModal = false;
   successMsg='';
   errorMsg='';
+  router = inject(Router);
 
   constructor(
     private playerCatSrv: PlayerCategoryService,
@@ -68,6 +70,10 @@ export class TeamsByPlayer implements OnInit{
   onTeamSaved() {
     this.closeAddTeamModal();
     this.loadTeamsByidMember(+this.idMember);
+  }
+
+  goToTeamInfo(idTeam: number){
+    this.router.navigate(['edit-team/' + idTeam]);
   }
 
 }

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { PlayerCategoryDto } from '../../../shared/models/playercategory.model';
 import { PlayerCategoryService } from '../../../core/services/playercategory.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-players-by-team',
@@ -18,6 +19,7 @@ export class PlayersByTeam implements OnInit{
   @Input() idTeam!: string;
   players$!: Observable<PlayerCategoryDto[]>;
   filteredPlayers$!: Observable<PlayerCategoryDto[]>;
+  router = inject(Router);
 
   private filterNickname$ = new BehaviorSubject<string>('');
   private filterCategory$ = new BehaviorSubject<string>('');
@@ -91,7 +93,7 @@ export class PlayersByTeam implements OnInit{
     });
   }
 
-  goToPlayer(idPlayer: number){
-
+  goToPlayer(idMember: number){
+    this.router.navigate(['edit-member/' + idMember]);
   }
 }
