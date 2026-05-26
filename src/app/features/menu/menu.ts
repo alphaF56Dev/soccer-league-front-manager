@@ -39,6 +39,10 @@ export class Menu {
     this.router.navigate(['/members']);
   }
 
+  goToFields(){
+    
+  }
+
   goToCategories(){
     this.router.navigate(['/categories']);
   }
