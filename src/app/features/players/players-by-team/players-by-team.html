@@ -34,11 +34,11 @@
     >
       <div class="space-y-2">
         <h3 class="text-lg font-semibold text-gray-800">{{ player.nickname }}</h3>
-        <p class="text-sm text-gray-600">Categoría: {{ player.categoryName }}</p>
-        <p class="text-sm text-gray-600">Rango de edad: {{ player.minAge }} - {{ player.maxAge }}</p>
-        <p class="text-sm text-gray-600">Número de playera: {{ player.player_number }}</p>
+        <p class="text-sm text-gray-600">Category: {{ player.categoryName }}</p>
+        <p class="text-sm text-gray-600">Age: {{ player.minAge }} - {{ player.maxAge }}</p>
+        <p class="text-sm text-gray-600">Player Number: {{ player.player_number }}</p>
         <p class="text-sm text-gray-600">
-          Fecha de registro: {{ player.registration_date | date:'dd/MM/yyyy' }}
+          Added on: {{ player.registration_date | date:'dd/MM/yyyy' }}
         </p>
         <button
             (click)="goToPlayer(player.idMember)"
