@@ -1,0 +1,76 @@
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-700 to-green-900">
+  <div class="w-full max-w-6xl rounded-lg shadow-lg p-6 bg-white/80 backdrop-blur-sm">
+    <!-- Encabezado -->
+    <div class="flex flex-col items-center mb-6">
+      <app-menu-button></app-menu-button>
+      <img src="assets/field-icon.png" alt="Field Icon" class="w-16 h-16 mb-2" />
+      <h1 class="text-2xl font-bold text-gray-800">List of Fields</h1>
+      <button 
+        (click)="addField()" 
+        class="mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-400">
+          + Add
+      </button>
+    </div>
+
+    <!-- Tabla scrollable con filtros -->
+    <div class="overflow-y-auto max-h-[600px] rounded-md border border-gray-200 shadow-inner">
+      <table class="w-full border-collapse">
+        <thead class="bg-green-700 text-white sticky top-0">
+          <tr>
+            <th class="px-4 py-2 text-left">
+              Municipality
+              <input 
+                type="text" 
+                (input)="filters.municipality.next($event.target.value)" 
+                placeholder="Filter..." 
+                class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" 
+              />
+            </th>
+            <th class="px-4 py-2 text-left">
+              Name
+              <input 
+                type="text" 
+                (input)="filters.name.next($event.target.value)" 
+                placeholder="Filter..." 
+                class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" 
+              />
+            </th>
+            <th class="px-4 py-2 text-left">
+              Address
+              <input 
+                type="text" 
+                (input)="filters.address.next($event.target.value)" 
+                placeholder="Filter..." 
+                class="mt-1 w-full px-2 py-1 text-sm rounded-md text-black" 
+              />
+            </th>
+            <th class="px-4 py-2 text-center">Active</th>
+            <th class="px-4 py-2 text-center">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let field of filteredFields$ | async" class="border-b hover:bg-green-50">
+            <td class="px-4 py-2">{{ field.municipalityName }}</td>
+            <td class="px-4 py-2">{{ field.name }}</td>
+            <td class="px-4 py-2">{{ field.address }}</td>
+            <td class="px-4 py-2 text-center">
+              <span 
+                class="px-2 py-1 rounded text-white" 
+                [ngClass]="field.isActive ? 'bg-green-600' : 'bg-red-600'">
+                {{ field.isActive ? 'Yes' : 'No' }}
+              </span>
+            </td>
+            <td class="px-4 py-2 text-center">
+              <button 
+                (click)="modifyField(field.idField)" 
+                class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-400">
+                ✏️ Edit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

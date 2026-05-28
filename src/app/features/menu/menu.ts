@@ -40,7 +40,7 @@ export class Menu {
   }
 
   goToFields(){
-    
+    this.router.navigate(['/fields']);
   }
 
   goToCategories(){
