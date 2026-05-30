@@ -13,6 +13,10 @@ export class MunicipalityService {
         return this.http.get<Municipality[]>(`${this.apiUrl}list-municipalities`);
     }
 
+    listMunicipalitiesByIdState(idState: Number):Observable<Municipality[]>{
+        return this.http.get<Municipality[]>(`${this.apiUrl}list-municipalities-by-state/${idState}`);
+    }
+
     saveMunicipality(municipality: Municipality){
         return this.http.post(`${this.apiUrl}save-municipality`, municipality);
     }
