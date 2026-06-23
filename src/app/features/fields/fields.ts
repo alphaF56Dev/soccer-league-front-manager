@@ -43,11 +43,11 @@ export class Fields implements OnInit{
   }
 
   addField(){
-    console.log('Adding new field');   
+    this.router.navigate(['field-form']);
   }
 
   modifyField(idField: number){
-
+    this.router.navigate(['edit-field/' + idField]);
   }
 
   setupFilter(){

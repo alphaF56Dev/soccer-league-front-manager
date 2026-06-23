@@ -19,6 +19,7 @@ import { PositionCe } from './features/positions/position-ce/position-ce';
 import { Teams } from './features/teams/teams';
 import { TeamCe } from './features/teams/team-ce/team-ce';
 import { Fields } from './features/fields/fields';
+import { FieldCe } from './features/fields/field-ce/field-ce';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch:'full'},
@@ -48,5 +49,7 @@ export const routes: Routes = [
     {path: 'teams', component: Teams, canActivate: [authGuard]},
     {path: 'team-form', component: TeamCe, canActivate: [authGuard]},
     {path: 'edit-team/:idTeam', component: TeamCe, canActivate: [authGuard]},
-    {path: 'fields', component: Fields, canActivate: [authGuard]}
+    {path: 'fields', component: Fields, canActivate: [authGuard]},
+    {path: 'field-form', component: FieldCe, canActivate: [authGuard]},
+    {path: 'edit-field/:idField', component: FieldCe, canActivate: [authGuard]}
 ];

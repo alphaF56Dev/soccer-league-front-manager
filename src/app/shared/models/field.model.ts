@@ -1,7 +1,7 @@
 import { Municipality } from "./municipality.model";
 
 export interface Field{
-    idField: number,
+    idField?: number,
     idMunicipality: Municipality,
     name: string,
     address: string,

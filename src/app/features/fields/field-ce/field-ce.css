@@ -1,0 +1,17 @@
+/* Clase común para uniformar altura y estilo */
+.uniform-field {
+  min-height: 44px;   /* mismo alto para inputs y select */
+  font-size: 14px;    /* texto consistente */
+}
+
+/* Ajuste específico para Angular Material */
+::ng-deep .mat-form-field-flex {
+  height: 44px !important;   /* igual que los inputs */
+  align-items: center !important;
+}
+
+::ng-deep .mat-select-trigger {
+  height: 44px !important;   /* fuerza el mismo alto en el select */
+  display: flex;
+  align-items: center;
+}
