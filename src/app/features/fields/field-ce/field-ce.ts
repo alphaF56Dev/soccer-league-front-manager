@@ -78,7 +78,11 @@ export class FieldCe implements OnInit{
         next: (res) =>{
           this.field = {... res};
           this.selectedIdCountry = (this.field.idMunicipality.idState.idCountry.id_country) ? this.field.idMunicipality.idState.idCountry.id_country : 0;
-          this.selectedIdState = (this.field.idMunicipality.idState.id_state) ? this.field.idMunicipality.idState.id_state : 0;        
+          this.onCountryChange(this.selectedIdCountry);
+          this.selectedIdState = (this.field.idMunicipality.idState.id_state) ? this.field.idMunicipality.idState.id_state : 0;
+          this.onStateChange(this.selectedIdState);
+          
+          this.cd.detectChanges();    
         }
       });
   }
