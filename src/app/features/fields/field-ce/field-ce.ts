@@ -16,6 +16,7 @@ import { StateService } from '../../../core/services/state.service';
 import { MunicipalityService } from '../../../core/services/municipality.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FieldsCategory } from '../../fields-category/fields-category';
 
 @Component({
   selector: 'app-field-ce',
@@ -26,7 +27,8 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatTabsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    FieldsCategory
   ],
   templateUrl: './field-ce.html',
   styleUrl: './field-ce.css',

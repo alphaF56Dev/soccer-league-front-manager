@@ -1,0 +1,52 @@
+<div class="w-full rounded-lg bg-white p-6 shadow-lg">
+  <div class="mb-6 flex items-center justify-between">
+    <h2 class="text-2xl font-bold text-gray-800">Field Categories</h2>
+    <button
+      type="button"
+      class="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700 focus:ring-2 focus:ring-green-400"
+    >
+      + Add
+    </button>
+  </div>
+
+  <p *ngIf="isLoading" class="py-4 text-center text-gray-600">Loading field categories...</p>
+  <p *ngIf="errorMsg" class="py-4 text-center text-red-600">{{ errorMsg }}</p>
+  <p
+    *ngIf="!isLoading && !errorMsg && fieldCategories.length === 0"
+    class="py-4 text-center text-gray-600"
+  >
+    No categories are assigned to this field.
+  </p>
+
+  <div *ngIf="!isLoading && !errorMsg && fieldCategories.length > 0" class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div
+      *ngFor="let fieldCategory of fieldCategories"
+      class="flex flex-col justify-between rounded-lg border p-4 shadow-sm hover:bg-green-50"
+    >
+      <div class="space-y-2">
+        <h3 class="text-lg font-semibold text-gray-800">{{ fieldCategory.categoryName }}</h3>
+        <p class="text-sm text-gray-600">Field: {{ fieldCategory.nameField }}</p>
+        <p class="text-sm text-gray-600">Age: {{ fieldCategory.age }} years</p>
+        <p class="text-sm text-gray-600">Sex: {{ fieldCategory.sex === 'M' ? 'Male' : fieldCategory.sex === 'F' ? 'Female' : 'Mix'}}</p>
+        <p class="text-sm text-gray-600">
+          Schedule: {{ fieldCategory.startHour }} - {{ fieldCategory.endHour }}
+        </p>
+        <p class="text-sm text-gray-600">Match Days: {{ fieldCategory.matchDays }}</p>
+      </div>
+      <div class="mt-4 flex gap-2">
+        <button
+          type="button"
+          class="rounded-md bg-blue-600 px-3 py-1 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-400"
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          class="rounded-md bg-red-600 px-3 py-1 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-400"
+        >
+          Inactivate
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
