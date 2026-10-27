@@ -75,8 +75,8 @@
     <!-- Tabs -->
     <div class="mt-8" *ngIf="isEdit">
       <mat-tab-group>
-        <mat-tab label="Schedules">
-          <p class="text-gray-600 text-sm">Field schedules configuration. Coming soon...</p>
+        <mat-tab label="Categories">
+          <app-fields-category [idField]="field.idField ?? 0"></app-fields-category>
         </mat-tab>
       </mat-tab-group>
     </div>
