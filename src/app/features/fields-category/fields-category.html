@@ -3,6 +3,7 @@
     <h2 class="text-2xl font-bold text-gray-800">Field Categories</h2>
     <button
       type="button"
+      (click)="openFieldCategoryForm()"
       class="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700 focus:ring-2 focus:ring-green-400"
     >
       + Add
@@ -36,6 +37,7 @@
       <div class="mt-4 flex gap-2">
         <button
           type="button"
+          (click)="openFieldCategoryForm(fieldCategory.idFieldCategory)"
           class="rounded-md bg-blue-600 px-3 py-1 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-400"
         >
           Edit

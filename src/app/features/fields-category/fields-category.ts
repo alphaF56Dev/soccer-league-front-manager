@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FieldCategoryService } from '../../core/services/field-category.service';
 import { FieldCategoryDto } from '../../shared/models/field-category.model';
+import { MatDialog } from '@angular/material/dialog';
+import { FieldCategoryCe } from './field-category-ce/field-category-ce';
 
 @Component({
   selector: 'app-fields-category',
@@ -18,6 +20,7 @@ export class FieldsCategory implements OnChanges {
 
   constructor(
     private fieldCategorySrv: FieldCategoryService,
+    private dialog: MatDialog,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -42,6 +45,23 @@ export class FieldsCategory implements OnChanges {
         this.errorMsg = 'Unable to load field categories. Please contact your support.';
         this.cd.markForCheck();
       },
+    });
+  }
+
+  openFieldCategoryForm(idFieldCategory?: number): void {
+    const dialogRef = this.dialog.open(FieldCategoryCe, {
+      width: '720px',
+      maxWidth: '95vw',
+      data: {
+        idField: this.idField,
+        idFieldCategory: idFieldCategory ?? null,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((saved) => {
+      if (saved) {
+        this.getFieldCategories(this.idField);
+      }
     });
   }
 }

@@ -1,0 +1,104 @@
+<h2 mat-dialog-title class="text-xl font-semibold text-gray-800">
+  {{ isEdit ? 'Edit Field Category' : 'Add Field Category' }}
+</h2>
+
+<div class="max-h-[75vh] overflow-y-auto p-4">
+  <form #fieldCategoryForm="ngForm" class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <label class="block text-sm font-medium text-gray-700 md:col-span-2">
+      Category
+      <select
+        [(ngModel)]="selectedCategoryId"
+        name="category"
+        required
+        class="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+      >
+        <option [ngValue]="0" disabled>Select a category</option>
+        <option *ngFor="let category of categories" [ngValue]="category.idCategoryLeague">
+          {{ category.name }} - [ {{ category.minAge }} - {{ category.maxAge }} years ]
+        </option>
+      </select>
+    </label>
+
+    <label class="block text-sm font-medium text-gray-700">
+      Start Time
+      <input
+        type="time"
+        [(ngModel)]="fieldCategory.startHour"
+        name="startHour"
+        required
+        class="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+      />
+    </label>
+
+    <label class="block text-sm font-medium text-gray-700">
+      End Time
+      <input
+        type="time"
+        [(ngModel)]="fieldCategory.endHour"
+        name="endHour"
+        required
+        class="mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+      />
+    </label>
+
+    <fieldset class="md:col-span-2">
+      <legend class="mb-2 text-sm font-medium text-gray-700">Match Days</legend>
+      <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <label *ngFor="let day of matchDays" class="flex items-center gap-2 text-sm text-gray-700">
+          <input
+            type="checkbox"
+            [(ngModel)]="day.selected"
+            [name]="'matchDay' + day.value"
+            class="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-400"
+          />
+          {{ day.label }}
+        </label>
+      </div>
+      <p *ngIf="!hasSelectedMatchDay" class="mt-1 text-sm text-red-600">
+        Select at least one match day.
+      </p>
+    </fieldset>
+
+    <label class="flex items-center gap-2 text-sm font-medium text-gray-700 md:col-span-2">
+      <input
+        type="checkbox"
+        [(ngModel)]="fieldCategory.isActive"
+        name="isActive"
+        class="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-400"
+      />
+      Active
+    </label>
+
+    <div class="flex justify-end gap-3 md:col-span-2">
+      <button
+        type="button"
+        (click)="cancel()"
+        class="rounded-md border px-4 py-2 text-gray-700 hover:bg-gray-100"
+      >
+        Cancel
+      </button>
+      <button
+        type="button"
+        (click)="saveFieldCategory()"
+        [disabled]="
+          !fieldCategoryForm.form.valid ||
+          !hasSelectedMatchDay ||
+          selectedCategoryId <= 0 ||
+          isLoading ||
+          isSaving ||
+          !!successMsg
+        "
+        class="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        {{ isSaving ? 'Saving...' : isEdit ? 'Save Changes' : 'Add Field Category' }}
+      </button>
+    </div>
+  </form>
+
+  <p *ngIf="isLoading" class="mt-4 text-center text-gray-600">Loading field category...</p>
+  <p *ngIf="successMsg" class="mt-4 text-center text-green-700">{{ successMsg }}</p>
+  <p *ngIf="errorMsg" class="mt-4 text-center text-red-600">{{ errorMsg }}</p>
+  <ul *ngIf="fieldsOverSlap.length > 0" class="mt-2 list-inside list-disc text-sm text-red-600">
+    <li *ngFor="let field of fieldsOverSlap">{{ field }}</li>
+  </ul>
+</div>
