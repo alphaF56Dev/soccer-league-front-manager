@@ -3,11 +3,11 @@ import { Field } from "./field.model";
 
 export interface FieldCategory {
     idFieldCategory?: number,
-    idField: Field,
-    categoryLeague: Category,
-    startHour: String,
-    endHour: String,
-    matchDays: String,
+    idField: Pick<Field, 'idField'>,
+    idCategoryLeague: Pick<Category, 'idCategoryLeague'>,
+    startHour: string,
+    endHour: string,
+    matchDays: string,
     isActive: boolean
 }
 
@@ -25,4 +25,10 @@ export interface FieldCategoryDto {
     startHour: string,
     endHour: string,
     matchDays: string
+}
+
+export interface FieldAvailabilityResultDto {
+    code: number,
+    message: string,
+    fieldsOverSlap: string[]
 }
