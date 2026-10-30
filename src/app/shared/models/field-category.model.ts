@@ -26,3 +26,9 @@ export interface FieldCategoryDto {
     endHour: string,
     matchDays: string
 }
+
+export interface FieldAvailabilityResultDto {
+    code: number,
+    message: string,
+    fieldsOverSlap: string[]
+}
